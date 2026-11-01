@@ -1,0 +1,358 @@
+/* ==========================================================================
+   SheDrives — mobile / responsive fixes
+   Loaded last (after bootstrap, Style.css, shedrives.css and aos.css) so these
+   rules win the cascade. Everything here is scoped to a max-width media query,
+   so the desktop layout is untouched.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. AOS scroll animations were making the page wider than the phone
+   --------------------------------------------------------------------------
+   AOS starts fade-left / fade-right elements 100px outside their final
+   position. On desktop that space exists; on a 390px phone it pushed content
+   past the right edge, so the whole page laid out ~500px wide and the browser
+   rendered it zoomed out with a blank strip on the right.
+   Below 992px these animations become vertical, which reads the same but
+   costs no horizontal space. Flip animations rotate in 3D and do the same
+   thing, so they become a fade-up too.
+   -------------------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  [data-aos="fade-left"],
+  [data-aos="fade-right"],
+  [data-aos="fade-up-left"],
+  [data-aos="fade-up-right"],
+  [data-aos="fade-down-left"],
+  [data-aos="fade-down-right"],
+  [data-aos^="flip"] {
+    transform: translate3d(0, 24px, 0);
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+  }
+
+  [data-aos="fade-left"].aos-animate,
+  [data-aos="fade-right"].aos-animate,
+  [data-aos="fade-up-left"].aos-animate,
+  [data-aos="fade-up-right"].aos-animate,
+  [data-aos="fade-down-left"].aos-animate,
+  [data-aos="fade-down-right"].aos-animate,
+  [data-aos^="flip"].aos-animate {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Bootstrap gutter bleed
+   --------------------------------------------------------------------------
+   A `.row.g-5` pulls -24px margins each side, but `.container` only pads 12px,
+   so the row stuck out 12px past the screen on both sides. Drop those rows
+   back to the default gutter on small screens; the columns stack there anyway.
+   -------------------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  .container > .row.g-5,
+  .container > .row.gx-5,
+  .container-fluid > .row.g-5,
+  .container-fluid > .row.gx-5 {
+    --bs-gutter-x: 1.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Fixed pixel widths that don't fit a phone
+   -------------------------------------------------------------------------- */
+.mission-section .mission-desc {
+  width: auto;
+  max-width: 700px;
+}
+
+@media (max-width: 991.98px) {
+  .mission-section-wrapper .vision-circle {
+    width: min(300px, 78vw);
+    height: min(300px, 78vw);
+    padding: 24px;
+  }
+
+  /* decorative blur sat half off-screen and stretched the page */
+  .mission-section .animated-bg-shape,
+  .shedrives-footer .footer-blur-shape {
+    max-width: 60vw;
+    left: 0;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Forms
+   --------------------------------------------------------------------------
+   iOS Safari zooms the page in whenever a focused field is under 16px, and it
+   does not zoom back out. 16px on small screens keeps the page steady.
+   -------------------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  .form-control,
+  .form-select,
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="password"],
+  textarea,
+  select,
+  .contact-info-section .form-box .form-control,
+  .contact-info-section .form-box textarea,
+  .tf-events-cta form .form-control {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .form-control,
+  .form-select {
+    min-height: 48px;
+  }
+
+  /* this form is styled as underlined fields, so keep the 0 side padding
+     Style.css sets and only give the fields a comfortable height */
+  .contact-info-section .form-box .form-control,
+  .contact-info-section .form-box textarea {
+    min-height: 48px;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+  }
+
+  textarea.form-control {
+    min-height: 120px;
+  }
+
+  /* the submit button was 82x24 — smaller than a fingertip */
+  .contact-info-section .form-box .submit-btn {
+    width: 100%;
+    min-height: 50px;
+    padding: 0.85rem 1.5rem;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .contact-info-section .location-box a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+
+/* Newsletter sign-up stacked instead of two cramped halves */
+@media (max-width: 767.98px) {
+  .tf-events-cta form {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .tf-events-cta form .form-control {
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+
+  .tf-events-cta form .tf-btn {
+    width: 100%;
+    min-height: 48px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Touch targets — anything tappable gets at least 44px
+   -------------------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  .safety-section .main-tabs {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .safety-section .main-tabs .nav-link {
+    width: 100%;
+    min-height: 48px;
+    border: 1px solid var(--sd-line, #e8e8ee);
+  }
+
+  /* the vertical pill rail is unusable at tablet width — lay it out across */
+  .safety-section .sub-tabs {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border-left: none;
+    border-bottom: 3px solid #ea048b;
+    padding-left: 0;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .safety-section .sub-tabs .nav-link {
+    flex: 1 1 auto;
+    min-height: 44px;
+    text-align: center;
+    border-bottom: none;
+    border-radius: 999px;
+    background: #fff5fb;
+    padding: 0.7rem 1rem;
+  }
+
+  .safety-section .sub-tabs .nav-link.active {
+    background: #ea048b;
+    color: #fff;
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .btn,
+  .tf-btn {
+    min-height: 44px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Readability
+   -------------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  .mission-section-wrapper .vision-circle p,
+  .mission-section-wrapper .quote-bubble p {
+    font-size: 14px;
+  }
+
+  /* long URLs were pushing past the screen edge in the policy pages */
+  .privacy-policy-section a,
+  .terms-section a,
+  .policy-content a {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Embedded map — full width, sensible height on a phone
+   -------------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  .map-box iframe {
+    width: 100%;
+    height: 240px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. Tablets are touch devices too
+   --------------------------------------------------------------------------
+   The footer and contact link targets were capped at 767.98px, which left the
+   768–991px range (iPad portrait) with 21–24px tall links.
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .sd-footer a:not(.sd-footer-brand) {
+    padding: 0.5rem 0;
+    margin-bottom: 0;
+  }
+
+  .sd-social a {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+  }
+
+  .sd-footer-bottom a.d-inline {
+    display: inline-flex !important;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 0.15rem;
+  }
+
+  .contact-info-section .form-box .submit-btn {
+    min-height: 48px;
+    padding: 0.75rem 2rem;
+    font-size: 16px;
+  }
+
+  .contact-info-section .location-box a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .sd-footer-brand {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. Mission page quote circles
+   --------------------------------------------------------------------------
+   Style.css squeezes ~130 characters into a 230px circle at 12px on phones.
+   A slightly larger circle at 13px keeps the shape and stays readable.
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .quote-bubble {
+    width: min(265px, 74vw) !important;
+    height: min(265px, 74vw) !important;
+    padding: 18px !important;
+  }
+
+  .quote-bubble p {
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+  }
+
+  .mission-section-wrapper .vision-circle p {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. Form validation feedback
+   --------------------------------------------------------------------------
+   The contact form validates server-side but had nowhere to show the result,
+   so a rejected submission looked like nothing happened.
+   -------------------------------------------------------------------------- */
+.form-alert {
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.form-alert-error {
+  background: #fdecef;
+  border: 1px solid #f5b5c0;
+  color: #9b1c33;
+}
+
+.field-error {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #d32f4d;
+}
+
+/* the fields are underline-styled, so flag errors on that underline */
+.contact-info-section .form-box .form-control.is-invalid,
+.contact-info-section .form-box textarea.is-invalid {
+  border-bottom-color: #d32f4d;
+  background-image: none;
+}
+
+.contact-info-section .form-box .form-control:focus-visible,
+.contact-info-section .form-box textarea:focus-visible {
+  outline: 2px solid var(--sd-pink, #ea048b);
+  outline-offset: 2px;
+}
+
+/* Visible keyboard focus everywhere — it was being suppressed site-wide */
+a:focus-visible,
+button:focus-visible,
+.sd-btn:focus-visible,
+.nav-link:focus-visible,
+.dropdown-item:focus-visible {
+  outline: 2px solid var(--sd-pink, #ea048b);
+  outline-offset: 3px;
+  border-radius: 6px;
+}

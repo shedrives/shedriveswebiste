@@ -1,0 +1,197 @@
+body {
+  font-family: var(--font-body), sans-serif;
+  background-color: #f7f7fb;
+}
+
+.hero-heading {
+  font-family: var(--font-body), sans-serif;
+  font-weight: 700;
+  color: #ea048b;
+}
+
+.tf-events-hero {
+  background: linear-gradient(135deg, #fff5fb 0%, #f0f4ff 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 320px;
+}
+.tf-events-hero p,
+.tf-events-hero .lead {
+  color: #555;
+  text-align: center;
+}
+
+.tf-btn {
+  background: #ea048b;
+  color: #fff;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0 8px 25px rgba(234, 4, 139, 0.25);
+  transition: all 0.3s ease;
+}
+.tf-btn:hover {
+  color: #fff;
+  background: #d0037c;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(234, 4, 139, 0.35);
+}
+
+.event-card {
+  background: #fff;
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
+  min-height: 240px;
+}
+.event-card .event-date {
+  font-weight: 600;
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(234, 4, 139, 0.2);
+}
+.event-card h5 {
+  color: #222;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.event-card p {
+  color: #555;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.past-event-card {
+  background: #fff;
+}
+.past-event-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+.past-event-card:hover img {
+  transform: scale(1.05);
+}
+.past-event-card h6 {
+  color: #222;
+  font-family: var(--font-body), sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.past-event-card p {
+  color: #555;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.tf-events-cta {
+  background: linear-gradient(135deg, #fff5fb 0%, #f0f4ff 100%);
+}
+.tf-events-cta h2 {
+  font-family: var(--font-body), sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #ea048b;
+  text-align: center;
+}
+.tf-events-cta p {
+  color: #555;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+.tf-events-cta input {
+  border-radius: 30px;
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+.tf-events-cta button {
+  border-radius: 30px;
+}
+
+.event-card-flip {
+  perspective: 1000px;
+  min-height: 260px;
+}
+.event-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+.event-card-flip:hover .event-card-inner {
+  transform: rotateY(180deg);
+}
+.event-card-front,
+.event-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+.event-card-front {
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+.event-card-back {
+  transform: rotateY(180deg);
+  position: relative;
+}
+.event-card-back img.event-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.event-card-back .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.event-back-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  padding: 1rem;
+  width: 90%;
+}
+.event-date {
+  background: linear-gradient(90deg, #ea048b, #ff5faf);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 50px;
+  font-size: 0.85rem;
+}
+.event-card-front p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .tf-events-cta h2 {
+    font-size: 28px;
+  }
+  .event-card-front p {
+    font-size: 0.85rem;
+  }
+}

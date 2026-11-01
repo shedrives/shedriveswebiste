@@ -1,0 +1,960 @@
+/* SheDrives — inDrive-inspired modern layout */
+
+:root {
+  --sd-pink: #ea048b;
+  --sd-pink-dark: #c00372;
+  --sd-black: #0b0b0f;
+  --sd-ink: #16161d;
+  --sd-muted: #5c5c66;
+  --sd-line: #e8e8ee;
+  --sd-soft: #fff5fb;
+  --sd-cream: #f7f7f9;
+  --sd-white: #ffffff;
+  --font-display: "Outfit", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+p,
+li,
+a,
+button,
+input,
+textarea,
+label,
+.form-control {
+  font-family: var(--font-body) !important;
+}
+
+html {
+  /* clip (not hidden) stops sideways bleed without breaking position: sticky */
+  overflow-x: clip;
+  /* keep #anchor targets clear of the sticky navbar */
+  scroll-padding-top: 90px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  color: var(--sd-ink);
+  background: var(--sd-white);
+  overflow-x: clip;
+  -webkit-tap-highlight-color: rgba(234, 4, 139, 0.15);
+}
+
+h1, h2, h3, h4, h5, h6,
+.sd-brand-mark,
+.sd-section-title,
+.navbar-brand,
+.sd-footer-brand {
+  font-family: var(--font-display) !important;
+}
+
+main {
+  display: block;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ========== NAV ========== */
+.sd-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 0.85rem 0;
+}
+
+.sd-nav .navbar-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.55rem;
+  color: var(--sd-pink) !important;
+  letter-spacing: -0.04em;
+}
+
+.sd-nav .nav-link {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--sd-ink) !important;
+  margin: 0 0.35rem;
+  padding: 0.45rem 0.7rem !important;
+  border-radius: 999px;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.sd-nav .nav-link:hover,
+.sd-nav .nav-link.active {
+  color: var(--sd-pink) !important;
+  background: var(--sd-soft);
+}
+
+.sd-nav .dropdown-menu {
+  border: 1px solid var(--sd-line);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+  padding: 0.5rem;
+}
+
+.sd-nav .dropdown-item {
+  border-radius: 10px;
+  font-weight: 500;
+  padding: 0.65rem 0.9rem;
+}
+
+.sd-nav .dropdown-item:hover {
+  background: var(--sd-soft);
+  color: var(--sd-pink);
+}
+
+.sd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.85rem 1.45rem;
+  border: 2px solid transparent;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sd-btn:hover {
+  transform: translateY(-2px);
+}
+
+.sd-btn-primary {
+  background: var(--sd-pink);
+  color: #fff !important;
+  box-shadow: 0 10px 28px rgba(234, 4, 139, 0.28);
+}
+
+.sd-btn-primary:hover {
+  background: var(--sd-pink-dark);
+  color: #fff !important;
+}
+
+.sd-btn-dark {
+  background: var(--sd-black);
+  color: #fff !important;
+}
+
+.sd-btn-dark:hover {
+  background: #222;
+  color: #fff !important;
+}
+
+.sd-btn-outline {
+  background: transparent;
+  color: var(--sd-ink) !important;
+  border-color: rgba(0, 0, 0, 0.14);
+}
+
+.sd-btn-outline:hover {
+  border-color: var(--sd-pink);
+  color: var(--sd-pink) !important;
+}
+
+.sd-btn-outline-light {
+  background: transparent;
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.sd-btn-outline-light:hover {
+  background: #fff;
+  color: var(--sd-black) !important;
+}
+
+.sd-nav .navbar-toggler {
+  border: none;
+  background: var(--sd-pink);
+  padding: 0.4rem 0.55rem;
+  border-radius: 10px;
+}
+
+.sd-nav .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* ========== HERO (inDrive-style full-bleed) ========== */
+.sd-hero {
+  position: relative;
+  min-height: calc(100vh - 76px);
+  min-height: calc(100svh - 76px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(11, 11, 15, 0.15) 0%, rgba(11, 11, 15, 0.72) 55%, rgba(11, 11, 15, 0.92) 100%),
+    url("../Images/female-ride.jpg") center/cover no-repeat;
+  color: #fff;
+}
+
+.sd-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 180px;
+  background: linear-gradient(180deg, transparent, rgba(234, 4, 139, 0.25));
+  pointer-events: none;
+}
+
+.sd-hero-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-block: 4.5rem 5rem;
+}
+
+.sd-brand-mark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  margin-bottom: 1.25rem;
+  color: #fff;
+}
+
+.sd-brand-mark span {
+  color: var(--sd-pink);
+}
+
+.sd-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.55rem, 3.4vw, 2.4rem);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  max-width: 720px;
+  margin-bottom: 1rem;
+}
+
+.sd-hero p {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.86);
+  max-width: 540px;
+  margin-bottom: 1.75rem;
+}
+
+.sd-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.sd-hero-visual {
+  position: absolute;
+  right: 6%;
+  bottom: 8%;
+  width: min(320px, 34vw);
+  z-index: 2;
+  animation: sdFloat 5s ease-in-out infinite;
+}
+
+.sd-hero-visual img {
+  border-radius: 28px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+  border: 4px solid rgba(255, 255, 255, 0.18);
+}
+
+@keyframes sdFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes sdRise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.sd-hero-inner > * {
+  animation: sdRise 0.8s ease both;
+}
+
+.sd-hero-inner .sd-brand-mark { animation-delay: 0.05s; }
+.sd-hero-inner h1 { animation-delay: 0.18s; }
+.sd-hero-inner p { animation-delay: 0.3s; }
+.sd-hero-inner .sd-hero-actions { animation-delay: 0.42s; }
+
+/* ========== SECTIONS ========== */
+.sd-section {
+  padding: 5.5rem 0;
+}
+
+.sd-section-dark {
+  background: var(--sd-black);
+  color: #fff;
+}
+
+.sd-section-soft {
+  background: var(--sd-cream);
+}
+
+.sd-section-pink {
+  background: var(--sd-soft);
+}
+
+.sd-kicker {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sd-pink);
+  margin-bottom: 0.85rem;
+}
+
+.sd-section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: inherit;
+}
+
+.sd-section-title span {
+  color: var(--sd-pink);
+}
+
+.sd-section-lead {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--sd-muted);
+  max-width: 620px;
+}
+
+.sd-section-dark .sd-section-lead {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* ========== SERVICES (inDrive "one app many services") ========== */
+.sd-service-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 0;
+  min-height: 380px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--sd-white);
+  border: 1px solid var(--sd-line);
+  margin-bottom: 1.25rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.sd-service-row:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.08);
+}
+
+.sd-service-row.reverse {
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+.sd-service-row.reverse .sd-service-copy {
+  order: 2;
+}
+
+.sd-service-row.reverse .sd-service-media {
+  order: 1;
+}
+
+.sd-service-copy {
+  padding: 2.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sd-service-copy h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+}
+
+.sd-service-copy p {
+  color: var(--sd-muted);
+  line-height: 1.65;
+  margin-bottom: 1.4rem;
+}
+
+.sd-service-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.sd-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  background: var(--sd-soft);
+  color: var(--sd-pink);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.sd-chip:hover {
+  background: var(--sd-pink);
+  color: #fff;
+}
+
+.sd-service-media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 480px;
+  padding: 2rem 1.5rem;
+  background: radial-gradient(circle at 50% 8%, #ffe4f3, var(--sd-soft) 70%);
+}
+
+/* the phone screenshot sits whole on the panel instead of being cropped */
+.sd-service-media img {
+  width: auto;
+  max-width: 100%;
+  max-height: 420px;
+  display: block;
+  border-radius: 22px;
+  border: 3px solid #fff;
+  box-shadow: 0 20px 45px rgba(11, 11, 15, 0.22);
+}
+
+/* ========== SAFETY ========== */
+.sd-safety-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.sd-safety-item {
+  padding: 1.75rem 1.5rem;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.sd-safety-item:hover {
+  transform: translateY(-6px);
+  border-color: rgba(234, 4, 139, 0.55);
+  background: rgba(234, 4, 139, 0.1);
+}
+
+.sd-safety-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: var(--sd-pink);
+  color: #fff;
+  font-size: 1.25rem;
+  margin-bottom: 1.1rem;
+}
+
+.sd-safety-item h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.55rem;
+}
+
+.sd-safety-item p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* ========== HOW IT WORKS ========== */
+.sd-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.sd-step {
+  position: relative;
+  padding-top: 0.5rem;
+}
+
+.sd-step-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 3.5rem;
+  line-height: 1;
+  color: rgba(234, 4, 139, 0.18);
+  margin-bottom: 0.5rem;
+}
+
+.sd-step h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.sd-step p {
+  color: var(--sd-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.sd-step-img {
+  margin-top: 1.25rem;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--sd-line);
+  background: linear-gradient(170deg, var(--sd-soft), #fff 70%);
+  padding: 1rem;
+}
+
+.sd-step-img img {
+  /* auto width keeps the element box the same shape as the screenshot,
+     so the rounded corners hug the image instead of floating around it */
+  width: auto;
+  max-width: 100%;
+  height: 360px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  border-radius: 18px;
+  border: 3px solid #fff;
+  box-shadow: 0 14px 32px rgba(11, 11, 15, 0.16);
+  transition: transform 0.45s ease;
+}
+
+.sd-step:hover .sd-step-img img {
+  transform: scale(1.04);
+}
+
+/* ========== IMPACT / CTA ========== */
+.sd-cta-band {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  padding: 3.5rem;
+  background:
+    linear-gradient(135deg, rgba(11, 11, 15, 0.88), rgba(234, 4, 139, 0.75)),
+    url("../Images/2.jpg") center/cover no-repeat;
+  color: #fff;
+}
+
+.sd-cta-band h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  letter-spacing: -0.03em;
+  max-width: 640px;
+  margin-bottom: 1rem;
+}
+
+.sd-cta-band p {
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 520px;
+  margin-bottom: 1.5rem;
+  line-height: 1.65;
+}
+
+.sd-store-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.sd-store-row img {
+  height: 48px;
+  width: auto;
+}
+
+/* ========== FOOTER ========== */
+.sd-footer {
+  background: var(--sd-black);
+  color: rgba(255, 255, 255, 0.78);
+  padding: 4rem 0 2rem;
+}
+
+.sd-footer-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: var(--sd-pink);
+  letter-spacing: -0.03em;
+  display: inline-block;
+  margin-bottom: 0.85rem;
+}
+
+.sd-footer h5 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sd-footer a {
+  color: rgba(255, 255, 255, 0.72);
+  display: block;
+  margin-bottom: 0.55rem;
+  transition: color 0.2s ease;
+}
+
+.sd-footer a:hover {
+  color: var(--sd-pink);
+}
+
+.sd-footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.sd-social {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.sd-social a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  margin: 0;
+}
+
+.sd-social a:hover {
+  background: var(--sd-pink);
+  color: #fff;
+}
+
+/* ========== INNER PAGE HERO ========== */
+.sd-page-hero {
+  padding: 4.5rem 0 3rem;
+  background:
+    radial-gradient(circle at top right, rgba(234, 4, 139, 0.18), transparent 40%),
+    var(--sd-cream);
+}
+
+.sd-page-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  letter-spacing: -0.04em;
+  margin-bottom: 0.85rem;
+}
+
+.sd-page-hero p {
+  color: var(--sd-muted);
+  font-size: 1.05rem;
+  max-width: 620px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Soften old page chrome when new nav is present */
+.custom-navbar {
+  display: none !important;
+}
+
+.shedrives-footer {
+  display: none !important;
+}
+
+/* ========== RESPONSIVE ========== */
+
+/* Tablet and below — the collapsed navbar becomes the primary menu */
+@media (max-width: 991.98px) {
+  .sd-hero {
+    align-items: center;
+    min-height: 85vh;
+    min-height: 85svh;
+  }
+
+  .sd-hero-visual {
+    display: none;
+  }
+
+  .sd-service-row,
+  .sd-service-row.reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .sd-service-row.reverse .sd-service-copy,
+  .sd-service-row.reverse .sd-service-media {
+    order: initial;
+  }
+
+  .sd-service-media {
+    min-height: 0;
+    padding: 1.75rem 1.25rem;
+  }
+
+  .sd-service-media img {
+    max-height: 440px;
+  }
+
+  /* two across on tablets instead of a single long column */
+  .sd-safety-grid,
+  .sd-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sd-cta-band {
+    padding: 2.25rem;
+  }
+
+  /* --- mobile menu --- */
+  .sd-nav .navbar-collapse {
+    /* a long menu must scroll instead of running off the screen */
+    max-height: calc(100svh - 84px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 0.85rem;
+    padding: 0.5rem 0 1rem;
+    border-top: 1px solid var(--sd-line);
+  }
+
+  .sd-nav .nav-link {
+    margin: 0;
+    padding: 0.85rem 0.9rem !important;
+    border-radius: 12px;
+  }
+
+  /* flatten dropdowns into the menu — a floating panel is awkward on touch */
+  .sd-nav .dropdown-menu {
+    position: static !important;
+    transform: none !important;
+    border: none;
+    box-shadow: none;
+    background: var(--sd-soft);
+    border-radius: 12px;
+    margin: 0.25rem 0 0.5rem;
+    padding: 0.35rem;
+    width: 100%;
+  }
+
+  .sd-nav .dropdown-item {
+    padding: 0.8rem 0.9rem;
+    white-space: normal;
+  }
+
+  .sd-nav .navbar-toggler {
+    min-width: 46px;
+    min-height: 46px;
+  }
+
+  /* the Download App button spans the menu so it stays the obvious action */
+  .sd-nav .navbar-collapse > .dropdown {
+    margin-top: 0.5rem;
+  }
+
+  .sd-nav .navbar-collapse > .dropdown > .sd-btn {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .sd-nav .navbar-collapse > .dropdown .dropdown-menu {
+    background: var(--sd-white);
+    border: 1px solid var(--sd-line);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .sd-safety-grid,
+  .sd-steps {
+    grid-template-columns: 1fr;
+  }
+
+  /* footer links were 21–24px tall — too small to hit reliably */
+  .sd-footer a:not(.sd-footer-brand) {
+    padding: 0.55rem 0;
+    margin-bottom: 0;
+  }
+
+  .sd-social a {
+    padding: 0;
+  }
+
+  .sd-footer-bottom {
+    justify-content: flex-start;
+  }
+
+  .sd-footer-bottom a.d-inline {
+    display: inline-flex !important;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 0.15rem;
+  }
+
+  .sd-social a {
+    width: 44px;
+    height: 44px;
+  }
+
+  .sd-step-img img {
+    height: 380px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .sd-section {
+    padding: 3.5rem 0;
+  }
+
+  .sd-hero-inner {
+    padding-block: 3.5rem 3.75rem;
+  }
+
+  .sd-service-copy {
+    padding: 1.75rem;
+  }
+
+  .sd-page-hero {
+    padding: 2.75rem 0 2.25rem;
+  }
+
+  .sd-cta-band {
+    padding: 1.75rem;
+  }
+
+  /* stack the store buttons so neither gets clipped */
+  .sd-hero-actions .sd-btn {
+    width: 100%;
+  }
+
+  .sd-store-row img {
+    height: 44px;
+  }
+}
+
+/* On touch screens the hover lift sticks after a tap and looks broken */
+@media (hover: none) {
+  .sd-btn:hover,
+  .sd-service-row:hover,
+  .sd-safety-item:hover {
+    transform: none;
+  }
+
+  .sd-step:hover .sd-step-img img {
+    transform: none;
+  }
+}
+
+/* Respect the OS "reduce motion" setting */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .sd-hero-visual,
+  .sd-hero-inner > * {
+    animation: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========== SAFETY BAR (directly under the hero) ========== */
+.sd-safety-bar {
+  background: var(--sd-black);
+  padding: 1.5rem 0;
+  border-bottom: 3px solid var(--sd-pink);
+}
+
+.sd-safety-bar-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.sd-safety-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff !important;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.sd-safety-chip:hover {
+  background: rgba(234, 4, 139, 0.14);
+  border-color: rgba(234, 4, 139, 0.5);
+}
+
+.sd-safety-chip-icon {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  background: var(--sd-pink);
+  font-size: 1.05rem;
+}
+
+.sd-safety-chip strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.15rem;
+}
+
+.sd-safety-chip span > span,
+.sd-safety-chip > span:last-child {
+  font-size: 0.87rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 991.98px) {
+  .sd-safety-bar-inner {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .sd-safety-chip {
+    min-height: 60px;
+  }
+}
